@@ -3,6 +3,8 @@ import java.text.DecimalFormat;
 
 public class Environment {
     // Atributos //
+        public static final int MAX_KANGAROOS = 3;
+        public static final int MIN_KANGAROOS = 1;
 	private int numKangaroos = 0;
         private int enviID;
         
@@ -43,7 +45,6 @@ public class Environment {
 	public void setKangp1(Kangaroo newKang){
 		kangp1 = newKang;
 	}
-	
 	public void setKangp2(Kangaroo newKang){
 		kangp2 = newKang;
 	}
@@ -121,6 +122,15 @@ public class Environment {
             if(kangp3 != null){newNumKangaroos ++;}
             
             numKangaroos = newNumKangaroos;
+        }
+        public boolean existMale(){
+            boolean existMale = false;
+            
+            if(kangp1 != null && kangp1.getSex() == Kangaroo.MALE){existMale = true;}
+            if(kangp2 != null && kangp2.getSex() == Kangaroo.MALE){existMale = true;}
+            if(kangp3 != null && kangp3.getSex() == Kangaroo.MALE){existMale = true;}
+            
+            return existMale;
         }
         
         public String EnvironmentUI(){

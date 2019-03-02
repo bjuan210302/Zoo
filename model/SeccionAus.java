@@ -27,17 +27,17 @@ public class SeccionAus{
             Kangaroo kang1 = new Kangaroo("nameK1", "A", 58.8, 1.9, 1, 'M', 19, 7, 1994);
             Kangaroo kang2 = new Kangaroo("nameK2", "B", 32.6, 1.3, 1, 'F', 5, 10, 1998);
             Kangaroo kang3 = new Kangaroo("nameK3", "AB", 37.2, 1.6, 1, 'F', 22,2, 1996);
-            envi1 = new Environment (1, kang1, kang2, kang3);
+            envi1 = new Environment (1, null, kang2, kang3);
 			
             Kangaroo kang4 = new Kangaroo("nameK4", "A", 24.2, 1.3, 2, 'F', 4, 4, 2000);
             Kangaroo kang5 = new Kangaroo("nameK5", "O", 36.4, 2.4, 2, 'M', 18, 12, 1992);
             Kangaroo kang6 = new Kangaroo("nameK6", "AB", 27.2, 1.7, 2, 'F', 29, 6, 1997);
-            envi2 = new Environment (2, kang4, kang5, kang6);
+            envi2 = new Environment (2, null, kang5, kang6);
 			
             Kangaroo kang7 = new Kangaroo("nameK7", "O", 22.2, 1.1, 3, 'F', 17, 5, 2003);
             Kangaroo kang8 = new Kangaroo("nameK8", "B", 30.3, 1.8, 3, 'M', 6, 1, 1996);
             Kangaroo kang9 = new Kangaroo("nameK9", "B", 26.2, 1.4, 3, 'F', 2, 6, 1999);
-            envi3 = new Environment (3, kang7, kang8, kang9);
+            envi3 = new Environment (3, kang7, kang8, null);
             
             zonak1 = new Zone1(envi1, envi2, envi3);
 			
@@ -66,12 +66,12 @@ public class SeccionAus{
 	public Zone2 getZonad1(){
 		return zonad1;
 	}
-    public void updateTotalAnimals(){
+        public void updateTotalAnimals(){
             int newTotalAnimals = zonak1.getNumKangaroos() + zonad1.getNumDragons();
             totalAnimals = newTotalAnimals;
         }
         
-	public void addKang(){
+	public void addKang(String name, String blood, double weight, double height, int inEnvi, char sex, int bdDay, int bdMonth, int bdYear){
 		zonak1.addKang(name, blood, weight, height, inEnvi, sex, bdDay, bdMonth, bdYear);
 	}
 	

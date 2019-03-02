@@ -1,5 +1,6 @@
 package model;
 import java.text.DecimalFormat;
+import java.util.Scanner;
 
 public class Zone1{
 	
@@ -7,6 +8,7 @@ public class Zone1{
         private static final double TOTAL_AREA = 1500/2;
 	private int numEnvi;
 	private int numKangaroos;
+        private Scanner lec;
         
         // Environments //
         private Environment envi1;
@@ -20,11 +22,11 @@ public class Zone1{
             envi1 = nEnvi1;
             envi2 = nEnvi2;
             envi3 = nEnvi3;
-            
+            lec = new Scanner(System.in);
             f = new DecimalFormat("#.00");
         }
 	
-    public double getTotalArea(){
+        public double getTotalArea(){
 		return TOTAL_AREA;
 	}
 	public int getNumEnvi(){
@@ -48,9 +50,9 @@ public class Zone1{
 	
         public void updateNumKangaroos(){
             int newNumKangaroos = 0;
-            if(envi1 != null){newNumKangaroos =+ envi1.getNumKangaroos();}
-            if(envi2 != null){newNumKangaroos =+ envi2.getNumKangaroos();}
-            if(envi3 != null){newNumKangaroos =+ envi3.getNumKangaroos();}
+            if(envi1 != null){newNumKangaroos += envi1.getNumKangaroos();}
+            if(envi2 != null){newNumKangaroos += envi2.getNumKangaroos();}
+            if(envi3 != null){newNumKangaroos += envi3.getNumKangaroos();}
             numKangaroos = newNumKangaroos;
         }
         public void updateNumEnvi(){
@@ -129,27 +131,66 @@ public class Zone1{
             return generalNeedVacc;
         }
         
-		public String addKang(String name, String blood, double weight, double height, int inEnvi, char sex, int bdDay, int bdMonth, int bdYear){
+	public void addKang(String name, String blood, double weight, double height, int inEnvi, char sex, int bdDay, int bdMonth, int bdYear){
 		
-		newKang = new Kangaroo(name, blood, weight, height, inEnvi, sex, bdDay, bdMonth, bdYear);
-		String message = "";
-		int select;
+            Kangaroo newKang = new Kangaroo(name, blood, weight, height, inEnvi, sex, bdDay, bdMonth, bdYear);
+            String message = "";
+            int select;
 		
         if(getNumKangaroos() == getNumEnvi()*3) {message = "Error, there's no space for another kangaroo! Try deleting one of those existing ones.";}
-			else{
-				System.out.println("Where do you want to create the new kangaroo");
-				System.out.println("1) Environment 1			2) Environment 2			3) Environment 3");
-				
-				select = lec.nextInt();
-				switch(select){
-					case 1: if(envi1.getNumKangaroos() == 3){message = "Error, there's no space for another kangaroo! Try deleting one of those existing ones.";}
-					else if(envi1.kangp1 == null){getEnvi1().setKangp1(newKang);}
-					else if(envi1.kangp2 == null){getEnvi1().setKangp2(newKang);}
-					else if(envi1.kangp3 == null){getEnvi1().setKangp3(newKang);}
-				}
-			}
+	else{
+                select = newKang.getInEnvi();
+		switch(select){
+                    case 1:
+                    if(envi1.getNumKangaroos() == Environment.MAX_KANGAROOS){message = "Error, there's no space for another kangaroo in ENVIRONMENT 1";}
+                    else if(!(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_A)) && 
+                            !(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_B)) &&
+                            !(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_AB))&&
+                            !(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_O))){message = "Error, blood type '" + newKang.getBlood() + "' doesn't exist";}
+                    else if(newKang.getSex() != Kangaroo.MALE && newKang.getSex() != Kangaroo.FEMALE){message = "Error, '" + newKang.getSex() + "' isn't a valid character";}
+                    
+                    else if(newKang.getSex() == Kangaroo.MALE && envi1.existMale() == true){message = "Error, there's already a male kangaroo in ENVIRONMENT 1";}
+                    
+                    else if(envi1.kangp1 == null){getEnvi1().setKangp1(newKang); message = "Kangaroo " + newKang.getName() + " added successfully"; }
+                    else if(envi1.kangp2 == null){getEnvi1().setKangp2(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
+                    else if(envi1.kangp3 == null){getEnvi1().setKangp3(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
+                    break;
+                    
+                    case 2:
+                    if(envi2.getNumKangaroos() == Environment.MAX_KANGAROOS){message = "Error, there's no space for another kangaroo in ENVIRONMENT 2";}
+                    else if(!(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_A)) && 
+                            !(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_B)) &&
+                            !(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_AB))&&
+                            !(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_O))){message = "Error, blood type '" + newKang.getBlood() + "' doesn't exist";}
+                    else if(newKang.getSex() != Kangaroo.MALE && newKang.getSex() != Kangaroo.FEMALE){message = "Error, '" + newKang.getSex() + "' isn't a valid character";}
+                    
+                    else if(newKang.getSex() == Kangaroo.MALE && envi2.existMale() == true){message = "Error, there's already a male kangaroo in ENVIRONMENT 2";}
+                    
+                    else if(envi2.kangp1 == null){getEnvi2().setKangp1(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
+                    else if(envi2.kangp2 == null){getEnvi2().setKangp2(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
+                    else if(envi2.kangp3 == null){getEnvi2().setKangp3(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
+                    break;
+                    
+                    case 3:
+                    if(envi3.getNumKangaroos() == Environment.MAX_KANGAROOS){message = "Error, there's no space for another kangaroo in ENVIRONMENT 3";}
+                    else if(!(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_A)) && 
+                            !(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_B)) &&
+                            !(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_AB))&&
+                            !(newKang.getBlood().equals(Kangaroo.BLOOD_TYPE_O))){message = "Error, blood type '" + newKang.getBlood() + "' doesn't exist";}
+                    else if(newKang.getSex() != Kangaroo.MALE && newKang.getSex() != Kangaroo.FEMALE){message = "Error, '" + newKang.getSex() + "' isn't a valid character";}
+                    
+                    else if(newKang.getSex() == Kangaroo.MALE && envi3.existMale() == true){message = "Error, there's already a male kangaroo in ENVIRONMENT 3";}
+                    
+                    else if(envi3.kangp1 == null){getEnvi3().setKangp1(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
+                    else if(envi3.kangp2 == null){getEnvi3().setKangp2(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
+                    else if(envi3.kangp3 == null){getEnvi3().setKangp3(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
+                    break;
+                    
+                    default: message = "\nError, there's no 'ENVIRONMENT " + newKang.getInEnvi() + "'";
+                }
+	}
 			
-		return message;
+		System.out.println (message);
     }
 	
 	

@@ -4,6 +4,13 @@ import java.text.DecimalFormat;
 public class Kangaroo{
 	
 	// Atributes //
+        public static final char FEMALE = 'F';
+        public static final char MALE = 'M';
+        public static final String BLOOD_TYPE_A = "A";
+        public static final String BLOOD_TYPE_B = "B";
+        public static final String BLOOD_TYPE_AB = "AB";
+        public static final String BLOOD_TYPE_O = "O";
+        
 	private String name;
 	private String blood;
 	private double weight;
@@ -116,7 +123,7 @@ public class Kangaroo{
         public double calcCR(){    // RC = Cardiac Risk //
             double cardiacRiskLevel = 0;
             if(BMI < 18){
-		if(blood.equals("A") || blood.equals("AB")){
+		if(blood.equals(BLOOD_TYPE_A) || blood.equals(BLOOD_TYPE_AB)){
                     cardiacRiskLevel = 1;
 		}else{
                     cardiacRiskLevel = 2;
@@ -126,10 +133,10 @@ public class Kangaroo{
                 cardiacRiskLevel = 1;
             }
             if(BMI >= 25){
-		if(blood.equals("A") || blood.equals("B") || blood.equals("O")){
+		if(blood.equals(BLOOD_TYPE_A) || blood.equals(BLOOD_TYPE_B) || blood.equals(BLOOD_TYPE_O)){
                     cardiacRiskLevel = 3;
                 }
-		if(blood.equals("AB")){
+		if(blood.equals(BLOOD_TYPE_AB)){
                     cardiacRiskLevel = 2;
                 }
             }
