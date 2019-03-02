@@ -82,7 +82,7 @@ public class Environment {
             if(kangp2 != null){avAge += kangp2.getAge();}
             if(kangp3 != null){avAge += kangp3.getAge();}
             
-            return avAge/3;
+            return avAge/getNumKangaroos();
         }
         public double calcAvBMI(){// AvBMI = Average Body Mass Index //
             double avBMI = 0;
@@ -90,7 +90,7 @@ public class Environment {
             if(kangp2 != null){avBMI += kangp2.getBMI();}
             if(kangp3 != null){avBMI += kangp3.getBMI();}
             
-            return avBMI/3;
+            return avBMI/getNumKangaroos();
         }      		   
         public double calcAvCR(){// AvCR = Average Cardiac Risk //
             double avCR = 0;
@@ -98,7 +98,7 @@ public class Environment {
             if(kangp2 != null){avCR += kangp2.calcCR();}
             if(kangp3 != null){avCR += kangp3.calcCR();}
             
-            return avCR/3;
+            return avCR/getNumKangaroos();
         }
         public boolean calcAllVaccined(){
             boolean needVacc1 = false, needVacc2 = false, needVacc3 = false, generalNeedVacc;
@@ -123,6 +123,7 @@ public class Environment {
             
             numKangaroos = newNumKangaroos;
         }
+        
         public boolean existMale(){
             boolean existMale = false;
             
@@ -131,6 +132,14 @@ public class Environment {
             if(kangp3 != null && kangp3.getSex() == Kangaroo.MALE){existMale = true;}
             
             return existMale;
+        }
+        public boolean deleteKang(String kangName){
+            boolean kangDeleted = false;
+            if(kangp1 != null && kangp1.getName().equals(kangName)){kangp1 = null; kangDeleted = true;}
+            else if(kangp2 != null && kangp2.getName().equals(kangName)){kangp2 = null; kangDeleted = true;}
+            else if(kangp3 != null && kangp3.getName().equals(kangName)){kangp3 = null; kangDeleted = true;}
+            
+            return kangDeleted;
         }
         
         public String EnvironmentUI(){

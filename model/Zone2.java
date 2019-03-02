@@ -74,14 +74,14 @@ public class Zone2{
             if(drag1 != null){avBMI += drag1.getBMI();}
             if(drag2 != null){avBMI += drag2.getBMI();}
             
-            return avBMI/2;
+            return avBMI/getNumDragons();
         }
         public double calcAvCR(){
             double avCR = 0;
             if(drag1 != null){avCR += drag1.calcCR();}
             if(drag2 != null){avCR += drag2.calcCR();}
             
-            return avCR/2;
+            return avCR/getNumDragons();
         }
         
         public void updateNumDragons(){

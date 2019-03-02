@@ -131,6 +131,13 @@ public class Zone1{
             return generalNeedVacc;
         }
         
+        public String deleteKang(String kangName){
+            String message = "\nSorry, kangaroo '" + kangName +"' wasn't found";
+            if(envi1.deleteKang(kangName) == true){message = "\nKangaroo '" + kangName +"' successfully deleted";}
+            if(envi2.deleteKang(kangName) == true){message = "\nKangaroo '" + kangName +"' successfully deleted";}
+            if(envi3.deleteKang(kangName) == true){message = "\nKangaroo '" + kangName +"' successfully deleted";}
+            return message;
+        }
 	public void addKang(String name, String blood, double weight, double height, int inEnvi, char sex, int bdDay, int bdMonth, int bdYear){
 		
             Kangaroo newKang = new Kangaroo(name, blood, weight, height, inEnvi, sex, bdDay, bdMonth, bdYear);

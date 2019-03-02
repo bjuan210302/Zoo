@@ -160,14 +160,15 @@ public class Kangaroo{
             int daysTillVaccine;
             int testMonth;
             int monthsInDays;
-            testMonth = birthDate.getMonth() - Date.currentDate.getMonth();    // This line calculates how many months to the kangaroo's birthday //
-            monthsInDays = testMonth * 30;                                    // This line convert these months in days (Simplifying all months to 30 days) //
-            daysTillVaccine = monthsInDays - Date.currentDate.getDay();       // This line subtracs the current day to the previous convertion //
+            
             if(needVaccine() == false){
-                return 0;
+                daysTillVaccine = 0;
             }else{
-            return daysTillVaccine;
+                testMonth = birthDate.getMonth() - Date.currentDate.getMonth();    // This line calculates how many months to the kangaroo's birthday //
+                monthsInDays = testMonth * 30;                                    // This line convert these months in days (Simplifying all months to 30 days) //
+                daysTillVaccine = monthsInDays - Date.currentDate.getDay();       // This line subtracs the current day to the previous convertion //
             }
+            return daysTillVaccine;
         }
         
         public String KangarooUI(){

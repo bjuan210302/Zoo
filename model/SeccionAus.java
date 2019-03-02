@@ -59,13 +59,7 @@ public class SeccionAus{
                 updateTotalAnimals();
 		return totalAnimals;
 	}
-	
-	public Zone1 getZonak1(){
-		return zonak1;
-	}
-	public Zone2 getZonad1(){
-		return zonad1;
-	}
+        
         public void updateTotalAnimals(){
             int newTotalAnimals = zonak1.getNumKangaroos() + zonad1.getNumDragons();
             totalAnimals = newTotalAnimals;
@@ -74,6 +68,9 @@ public class SeccionAus{
 	public void addKang(String name, String blood, double weight, double height, int inEnvi, char sex, int bdDay, int bdMonth, int bdYear){
 		zonak1.addKang(name, blood, weight, height, inEnvi, sex, bdDay, bdMonth, bdYear);
 	}
+        public void deleteKang(String kangName){
+            System.out.println(zonak1.deleteKang(kangName));
+        }
 	
 	public double calcTotalAreaReq(){
             return zonak1.calcTotalAreaReq() + zonad1.calcTotalAreaReq();
@@ -118,6 +115,14 @@ public class SeccionAus{
             screenText += zonak1.ZoneUI();
             screenText += zonad1.ZoneUI();
             
+            return screenText;
+        }
+        public String Zone1UI(){
+            String screenText = zonak1.ZoneUI();
+            return screenText;
+        }
+        public String Zone2UI(){
+            String screenText = zonad1.ZoneUI();
             return screenText;
         }
 }

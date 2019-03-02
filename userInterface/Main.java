@@ -28,40 +28,18 @@ public class Main{
         System.out.println("");System.out.println("");System.out.println("");System.out.println("");
     }
 	
-    public void screenTextPrinter(){
+    public void seeAllAreas(){
         System.out.println("\n\n");
         System.out.println(sAustralia.SeccionAusUI());
     }
-    public void menu(){
-	System.out.println("\nWhat do you want to do?");
-	System.out.println("1) See all areas                     2) See zone 1                     3) See zone 2");
-	System.out.println("4) Add a new kangaroo                5) Delete a kangaroo              6) Edit a kangaroo");
-	select = (lec.nextInt());
-                
-	switch(select){
-		case 1: screenTextPrinter();
-		break;
-			
-		case 2: System.out.println("Sorry, this option will be available soon!");
-		break;
-			
-		case 3: System.out.println("Sorry, this option will be available soon!");
-		break;
-                            
-                case 4: addKang();
-		break;
-                        
-                case 5: System.out.println("Sorry, this option will be available soon!");
-		break;
-                 
-                case 6: System.out.println("Sorry, this option will be available soon!");
-		break;
-			
-		default: System.out.println("Sorry but option '" + select + "' doesn't exist.");
-		}
-	}
-	
-	public void addKang(){
+    public void seeZone1(){
+        System.out.println(sAustralia.Zone1UI());
+    }
+    public void seeZone2(){
+        System.out.println(sAustralia.Zone2UI());
+    }
+    
+    public void addKang(){
 		System.out.println("\nPlease type the necessary info:\n");
 		
 		System.out.print("Name: ");         String name = lecStrings.nextLine();
@@ -77,6 +55,45 @@ public class Main{
 		
 		sAustralia.addKang(name, blood, weight, height, inEnvi, sex, bdDay, bdMonth, bdYear);
 	}
+    public void deleteKang(){
+        System.out.println("\nWhat's the name of the kangaroo that you want to delete?");
+        String kangName = lecStrings.nextLine();
+        sAustralia.deleteKang(kangName);
+    }
+    
+    public void menu(){
+	System.out.println("\nWhat do you want to do?");
+	System.out.println("1) See all areas                     2) See zone 1                     3) See zone 2");
+	System.out.println("4) Add a new kangaroo                5) Delete a kangaroo              6) Edit a kangaroo");
+	select = (lec.nextInt());
+                
+	switch(select){
+		case 1: seeAllAreas();
+		break;
+			
+		case 2: seeZone1();
+		break;
+			
+		case 3: seeZone2();
+		break;
+                            
+                case 4: addKang();
+		break;
+                        
+                case 5: deleteKang();
+		break;
+                 
+                case 6: System.out.println("Sorry, this option will be available soon!");
+		break;
+                
+                case 10: System.out.println("GoodBye!");
+		break;
+			
+		default: System.out.println("Sorry but option '" + select + "' doesn't exist.");
+		}
+	}
+	
+    
     
 	
     
