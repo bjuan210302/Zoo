@@ -3,6 +3,8 @@ package model;
 public class Date{
 	
         // Atributos //
+        public static int MAX_DAY = 30;
+        public static int MAX_MONTH = 12;
         private int day ;
         private int month;
         private int year;

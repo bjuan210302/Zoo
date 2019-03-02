@@ -71,6 +71,16 @@ public class Kangaroo{
             return BMI;
         }
         
+        public int getbdDay(){
+            return birthDate.getDay();
+        }
+        public int getbdMonth(){
+            return birthDate.getMonth();
+        }
+        public int getbdYear(){
+            return birthDate.getYear();
+        }
+        
 	public void setName(String newName){
             name = newName;
 	}

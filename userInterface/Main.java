@@ -60,11 +60,19 @@ public class Main{
         String kangName = lecStrings.nextLine();
         sAustralia.deleteKang(kangName);
     }
+    public void moveKang(){
+        System.out.println("\nWhat's the name of the kangaroo that you want to move?");
+        String kangName = lecStrings.nextLine();
+        System.out.println("\nMove " + kangName + " to wich Environment?");
+        int toEnvi = lec.nextInt();
+        
+        sAustralia.moveKang(kangName, toEnvi);
+    }
     
     public void menu(){
 	System.out.println("\nWhat do you want to do?");
 	System.out.println("1) See all areas                     2) See zone 1                     3) See zone 2");
-	System.out.println("4) Add a new kangaroo                5) Delete a kangaroo              6) Edit a kangaroo");
+	System.out.println("4) Add kangaroo                      5) Delete kangaroo                6) Move kangaroo");
 	select = (lec.nextInt());
                 
 	switch(select){
@@ -83,10 +91,10 @@ public class Main{
                 case 5: deleteKang();
 		break;
                  
-                case 6: System.out.println("Sorry, this option will be available soon!");
+                case 6: moveKang();
 		break;
                 
-                case 10: System.out.println("GoodBye!");
+                case 7: System.out.println("GoodBye!");
 		break;
 			
 		default: System.out.println("Sorry but option '" + select + "' doesn't exist.");
@@ -104,6 +112,6 @@ public class Main{
         main.Main();
         
         //main.insertDate();
-        do{main.menu();} while(main.select != 10);
+        do{main.menu();} while(main.select != 7);
     }
 }

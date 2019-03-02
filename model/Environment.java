@@ -141,6 +141,14 @@ public class Environment {
             
             return kangDeleted;
         }
+        public Kangaroo searchKang(String kangName){
+            Kangaroo kangFound = null;
+            if(kangp1 != null && kangp1.getName().equals(kangName)){kangFound = kangp1;}
+            else if(kangp2 != null && kangp2.getName().equals(kangName)){kangFound = kangp2;}
+            else if(kangp3 != null && kangp3.getName().equals(kangName)){kangFound = kangp3;}
+            
+            return kangFound;
+        }
         
         public String EnvironmentUI(){
             
