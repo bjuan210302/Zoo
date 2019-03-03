@@ -263,6 +263,15 @@ public class Zone1{
             
             return nameList;
         }
+        public String neededVaccines(){
+            String nameList = "";
+            
+            nameList += envi1.neededVaccines();
+            nameList += envi2.neededVaccines();
+            nameList += envi3.neededVaccines();
+            
+            return nameList;
+        }
 	
         public String ZoneUI(){
             

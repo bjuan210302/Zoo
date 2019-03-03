@@ -154,11 +154,9 @@ public class Kangaroo{
 	}
         
 	public boolean needVaccine(){
+            updateAge();
             boolean need = false;
             if(age < 1){
-                need = true;
-            }
-            if(age == 1){
                 need = true;
             }
             if(age > 1){
@@ -166,19 +164,21 @@ public class Kangaroo{
             }
             return need;
 	}
-        public int calcDaysTillVaccine(){
+        public String calcDaysTillVaccine(){
             int daysTillVaccine;
             int testMonth;
             int monthsInDays;
+            String message;
             
             if(needVaccine() == false){
-                daysTillVaccine = 0;
+                message = "Dont need";
             }else{
                 testMonth = birthDate.getMonth() - Date.currentDate.getMonth();    // This line calculates how many months to the kangaroo's birthday //
                 monthsInDays = testMonth * 30;                                    // This line convert these months in days (Simplifying all months to 30 days) //
                 daysTillVaccine = monthsInDays - Date.currentDate.getDay();       // This line subtracs the current day to the previous convertion //
+                message = Integer.toString(daysTillVaccine);
             }
-            return daysTillVaccine;
+            return message;
         }
         public String searchByLetter(){
             String nameList = "";

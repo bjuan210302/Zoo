@@ -157,6 +157,14 @@ public class Environment {
             
             return nameList;
         }
+        public String neededVaccines(){
+            String nameList = "\nName:     (ENVIRONMENT " + getEnviID() +")     Days to vaccine\n";
+            if(kangp1 != null){nameList += String.format("%-30.10s %s %s", kangp1.getName(), kangp1.calcDaysTillVaccine(),"\n");}
+            if(kangp2 != null){nameList += String.format("%-30.10s %s %s", kangp2.getName(), kangp2.calcDaysTillVaccine(),"\n");}
+            if(kangp3 != null){nameList += String.format("%-30.10s %s %s", kangp3.getName(), kangp3.calcDaysTillVaccine(),"\n");}
+            
+            return nameList;
+        }
         
         public String EnvironmentUI(){
             
