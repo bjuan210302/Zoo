@@ -180,25 +180,27 @@ public class Kangaroo{
             }
             return message;
         }
-        public String searchByLetter(){
+        public String searchByVowel(){
+            // To know if this animal name begins and ends with vowels //
             String nameList = "";
             String Name = getName();
             
-            Name = Name.trim(); Name = Name.toLowerCase();
-            int length = Name.length();
+            Name = Name.trim(); Name = Name.toLowerCase(); // Put all characters in lower case //
+            int length = Name.length(); // Calculates how much characters the name have //
             
-            char firstLetter = Name.charAt(0);
-            char LastLetter = Name.charAt(length - 1);
+            char firstLetter = Name.charAt(0); // Put the first character in a char to compare it with the vowels later //
+            char LastLetter = Name.charAt(length - 1); // Put the last character in a char to compare it with the vowels later //
             
             if(firstLetter == 'a' || firstLetter == 'e' || firstLetter == 'i' || firstLetter == 'o'|| firstLetter == 'u'){
                 if(LastLetter == 'a' || LastLetter == 'e' || LastLetter == 'i' || LastLetter == 'o'|| LastLetter == 'u'){
-                nameList = getName() + "\n";
+                nameList = getName() + "\n";  // this line only executes if first and last character are equals to a vowel //
                 }
             }
             return nameList;
         }
         
         public String KangarooUI(){
+        //Creates a screen with this type of animal information //
         String ln1 = String.format("%40s %s", "", "#####################################\n");
         String ln2 = String.format("%40s %s %-11.9s %s %-10.2s %s", "", "# Name:", getName(), "Age:", getAge(), "#\n");
         String ln3 = String.format("%40s %s %-22.13s %s","", "# BirthDate:", getBirthDate(), "#\n");

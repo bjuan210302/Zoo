@@ -2,20 +2,20 @@ package model;
 import java.text.DecimalFormat;
 
 public class Environment {
-    // Atributos //
+    // Atributes //
         public static final int MAX_KANGAROOS = 3;
         public static final int MIN_KANGAROOS = 1;
 	private int numKangaroos = 0;
         private int enviID;
         
-        // Canguros //
+        // Kangaroos //
         public Kangaroo kangp1;
         public Kangaroo kangp2;
         public Kangaroo kangp3;
         
         DecimalFormat f;
 		
-	// Metodos //
+	// Methods //
 	public Environment(int ID, Kangaroo nkang1, Kangaroo nkang2, Kangaroo nkang3){
             enviID = ID;
             kangp1 = nkang1;
@@ -42,6 +42,7 @@ public class Environment {
             return enviID;
         }
 	
+        // these "setKang" methods are used to create, move and delete kangaroos //
 	public void setKangp1(Kangaroo newKang){
 		kangp1 = newKang;
 	}
@@ -76,7 +77,7 @@ public class Environment {
             
             return areaReq;
         }
-        public double calcAvAge(){
+        public double calcAvAge(){ // AvAge = Average Age //
             double avAge = 0;
             if(kangp1 != null){avAge += kangp1.getAge();}
             if(kangp2 != null){avAge += kangp2.getAge();}
@@ -101,13 +102,14 @@ public class Environment {
             return avCR/getNumKangaroos();
         }
         public boolean calcAllVaccined(){
+            // Test if all kangaroos inside a environment are vaccined //
             boolean needVacc1 = false, needVacc2 = false, needVacc3 = false, generalNeedVacc;
             
             if(kangp1 != null){needVacc1 = kangp1.needVaccine();}
             if(kangp2 != null){needVacc2 = kangp2.needVaccine();}
             if(kangp3 != null){needVacc3 = kangp3.needVaccine();}
             
-            if(needVacc1 == false && needVacc2 == false && needVacc3 == false){
+            if(needVacc1 == false && needVacc2 == false && needVacc3 == false){ // If noone needs a vaccine then they all are vaccined //
                 generalNeedVacc = true;
             }else{
                 generalNeedVacc = false;
@@ -116,7 +118,8 @@ public class Environment {
         }
         
         public void updateNumKangaroos(){
-            int newNumKangaroos = 0;
+            // Checks if some kangaroo is now null or != null //
+            int newNumKangaroos = 0; // This is to count how many kangaroos are != null //
             if(kangp1 != null){newNumKangaroos ++;}
             if(kangp2 != null){newNumKangaroos ++;}
             if(kangp3 != null){newNumKangaroos ++;}
@@ -125,6 +128,7 @@ public class Environment {
         }
         
         public boolean existMale(){
+            // Checks y theres already a male kangaroo in the environment //
             boolean existMale = false;
             
             if(kangp1 != null && kangp1.getSex() == Kangaroo.MALE){existMale = true;}
@@ -134,14 +138,18 @@ public class Environment {
             return existMale;
         }
         public boolean deleteKang(String kangName){
+            // Search for coincidences between a searched name and a kangaroo name //
+            // If searched name and a kangaroo name are equals that kangaroo is turned to null //
             boolean kangDeleted = false;
             if(kangp1 != null && kangp1.getName().equals(kangName)){kangp1 = null; kangDeleted = true;}
             else if(kangp2 != null && kangp2.getName().equals(kangName)){kangp2 = null; kangDeleted = true;}
             else if(kangp3 != null && kangp3.getName().equals(kangName)){kangp3 = null; kangDeleted = true;}
             
-            return kangDeleted;
+            return kangDeleted; // Returns a boolean to make others methods know if the kangaroo was found and deleted //
         }
         public Kangaroo searchKang(String kangName){
+            // Search for coincidences between a searched name and a kangaroo name //
+            // If searched name and a kangaroo name are equals the method return said kangaroo //
             Kangaroo kangFound = null;
             if(kangp1 != null && kangp1.getName().equals(kangName)){kangFound = kangp1;}
             else if(kangp2 != null && kangp2.getName().equals(kangName)){kangFound = kangp2;}
@@ -149,15 +157,17 @@ public class Environment {
             
             return kangFound;
         }
-        public String searchByLetter(){
+        public String searchByVowel(){
+            // Uses searchByVowel() in Kangaroo class to check all kangaroos in the environment //
             String nameList = "";
-            if(kangp1 != null){nameList += kangp1.searchByLetter();}
-            if(kangp2 != null){nameList += kangp2.searchByLetter();}
-            if(kangp3 != null){nameList += kangp3.searchByLetter();}
+            if(kangp1 != null){nameList += kangp1.searchByVowel();}
+            if(kangp2 != null){nameList += kangp2.searchByVowel();}
+            if(kangp3 != null){nameList += kangp3.searchByVowel();}
             
             return nameList;
         }
         public String neededVaccines(){
+            // Uses daysTillVaccine() in Kangaroo class to check all kangaroos in the environment and then put them in a list //
             String nameList = "\nName:     (ENVIRONMENT " + getEnviID() +")     Days to vaccine\n";
             if(kangp1 != null){nameList += String.format("%-30.10s %s %s", kangp1.getName(), kangp1.calcDaysTillVaccine(),"\n");}
             if(kangp2 != null){nameList += String.format("%-30.10s %s %s", kangp2.getName(), kangp2.calcDaysTillVaccine(),"\n");}
@@ -167,7 +177,7 @@ public class Environment {
         }
         
         public String EnvironmentUI(){
-            
+        //Creates a screen with this class information //
         String ln1 = String.format("\n\n       ###############################\n");
         String ln2 = String.format("%6s %s %-6.2s %s", "", "# Kangaroo Environment", getEnviID(), "#\n");
         String ln3 = String.format("%6s %s", "", "#                             #\n");
@@ -185,6 +195,7 @@ public class Environment {
         
         String screenText = ln1 + ln2 + ln3 + ln4 + ln5 + ln6 + ln7 + ln8 + ln9 + ln10 + ln11 + ln12 + ln13 + ln14;
         
+        // Add kangaroos info to this screen //
         if(kangp1 != null){screenText += kangp1.KangarooUI();}
         if(kangp2 != null){screenText += kangp2.KangarooUI();}
         if(kangp3 != null){screenText += kangp3.KangarooUI();}

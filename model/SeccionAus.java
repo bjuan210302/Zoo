@@ -4,19 +4,18 @@ import java.text.DecimalFormat;
 
 public class SeccionAus{
 	
-	// Atributos //
+	// Atributes //
 	private static final double TOTAL_AREA = 1500;
 	private static final int TOTAL_ZONES = 2;
 	private int totalAnimals;
         
-        // Zonas //
+        // Zones //
         private Zone1 zonak1;
         private Zone2 zonad1;
         
         
         DecimalFormat f;
-	
-	// SeccionAus Methods//
+        
         // Constructor 
 	public SeccionAus(){
 		
@@ -27,17 +26,17 @@ public class SeccionAus{
             Kangaroo kang1 = new Kangaroo("nameK1", "A", 58.8, 1.9, 1, 'M', 19, 2, 2015);
             Kangaroo kang2 = new Kangaroo("nameK2", "B", 32.6, 1.3, 1, 'F', 5, 3, 1998);
             Kangaroo kang3 = new Kangaroo("nameK3", "AB", 37.2, 1.6, 1, 'F', 22,2, 2018);
-            envi1 = new Environment (1, null, null, null);
+            envi1 = new Environment (1, kang1, kang2, null);
 			
             Kangaroo kang4 = new Kangaroo("nameK4", "A", 24.2, 1.3, 2, 'F', 4, 1, 2018);
             Kangaroo kang5 = new Kangaroo("nameK5", "O", 36.4, 2.4, 2, 'M', 18, 12, 2018);
             Kangaroo kang6 = new Kangaroo("nameK6", "AB", 27.2, 1.7, 2, 'F', 29, 4, 2017);
-            envi2 = new Environment (2, null, null, null);
+            envi2 = new Environment (2, kang4, kang5, null);
 			
             Kangaroo kang7 = new Kangaroo("nameK7", "O", 22.2, 1.1, 3, 'F', 17, 5, 2003);
             Kangaroo kang8 = new Kangaroo("nameK8", "B", 30.3, 1.8, 3, 'M', 6, 1, 2018);
             Kangaroo kang9 = new Kangaroo("nameK9", "B", 26.2, 1.4, 3, 'F', 2, 6, 1999);
-            envi3 = new Environment (3, null, null, null);
+            envi3 = new Environment (3, kang7, null, kang9);
             
             zonak1 = new Zone1(envi1, envi2, envi3);
 			
@@ -48,6 +47,7 @@ public class SeccionAus{
             f = new DecimalFormat("#.00");
         }
 	
+        //Most of these methods were maded taking zonak1 and zonad1 as obligatory//
         //General Services
 	public double getTotalArea(){
 		return TOTAL_AREA;
@@ -61,29 +61,34 @@ public class SeccionAus{
 	}
         
         public void updateTotalAnimals(){
+            // Ask the zones to count its animals //
             int newTotalAnimals = zonak1.getNumKangaroos() + zonad1.getNumDragons();
             totalAnimals = newTotalAnimals;
         }
         
 	public void addKang(String name, String blood, double weight, double height, int inEnvi, char sex, int bdDay, int bdMonth, int bdYear){
+                // Calls addKang() in class Zone1 //
 		zonak1.addKang(name, blood, weight, height, inEnvi, sex, bdDay, bdMonth, bdYear);
 	}
         public void deleteKang(String kangName){
+            // Calls deleteKang() in class Zone1 //
             System.out.println(zonak1.deleteKang(kangName));
         }
         public void moveKang(String kangName, int toEnvi){
+            // Calls moveKang() in class Zone1 //
             System.out.println(zonak1.moveKang(kangName, toEnvi));
         }
-        public String searchByLetter(){
+        public String searchByVowel(){
+            // Ask the zones the list of its animals that begin end with vowels //
             String nameList = "";
-            nameList += zonak1.searchByLetter();
-            nameList += zonad1.searchByLetter();
+            nameList += zonak1.searchByVowel();
+            nameList += zonad1.searchByVowel();
             
             return nameList;
         }
         public String neededVaccines(){
             String nameList = "";
-            
+            // Ask the zones the list of its animals that need vaccines //
             nameList += zonak1.neededVaccines();
             return nameList;
         }
@@ -97,7 +102,7 @@ public class SeccionAus{
 	public double calcTotalWaterReq(){
             return zonak1.calcTotalWaterReq() + zonad1.calcTotalWaterReq();
         }
-	public double calcAvAge(){
+	public double calcAvAge(){ // AvAge = Average Age //
             return (zonak1.calcAvAge() + zonad1.calcAvAge())/2;
         }
 	public double calcAvBMI(){       // AvBMI = Average Body Mass Index //
@@ -107,14 +112,14 @@ public class SeccionAus{
             return (zonak1.calcAvCR() + zonad1.calcAvCR())/2;
         }
 	public double calcFreeArea(){
-            return getTotalArea() - (zonak1.calcTotalAreaReq() + zonad1.calcTotalAreaReq());
+            return TOTAL_AREA - (zonak1.calcTotalAreaReq() + zonad1.calcTotalAreaReq());
         }
 	public boolean calcAllVaccined(){
             return zonak1.calcAllVaccined();
         }
         
         public String SeccionAusUI(){
-            
+            //Creates a screen with this class information //
             String ln0 = String.format("%40s %s",                         "", "#############################################################################\n");
             String ln1 = String.format("%40s %s",                         "", "#                      Section 'Australia'                                  #\n");
             String ln2 = String.format("%40s %s",                         "", "#                                                                           #\n");
@@ -128,11 +133,14 @@ public class SeccionAus{
             
             String screenText = ln0 + ln1 + ln2 + ln3 + ln4 + ln5 + ln6 + ln7 + ln8 + ln9;
             
+            // Add zones info to this screen //
             screenText += zonak1.ZoneUI();
             screenText += zonad1.ZoneUI();
             
             return screenText;
         }
+        
+        // These two methods print the info of its zone individualy
         public String Zone1UI(){
             String screenText = zonak1.ZoneUI();
             return screenText;

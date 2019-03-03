@@ -9,7 +9,7 @@ public class Date{
         private int month;
         private int year;
         
-        public static Date currentDate = new Date(2, 3, 2019);
+        public static Date currentDate = new Date(00, 00, 0000);
         
         // Metodos //
         public Date(int d, int m, int y){

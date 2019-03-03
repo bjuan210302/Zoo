@@ -15,6 +15,7 @@ public class Zone2{
         
         DecimalFormat f;
         
+        //Most of these methods were maded taking two dragons as obligatory//
 	// Metodos //
 	public Zone2(double fIw, Dragon ndrag1, Dragon ndrag2){
             foodInWeight = fIw;
@@ -32,11 +33,11 @@ public class Zone2{
             return foodInWeight;
         }
 	public int getNumDragons(){
-		int kCounter = 0;
-            if(drag1 != null){kCounter ++;}
-            if(drag2 != null){kCounter ++;}
+            int dCounter = 0;
+            if(drag1 != null){dCounter ++;}
+            if(drag2 != null){dCounter ++;}
             
-            return kCounter;
+            return dCounter;
 	}
         public int getTemp(){
 		return temp;
@@ -62,7 +63,7 @@ public class Zone2{
         public double calcFreeArea(){
             return TOTAL_AREA - calcTotalAreaReq(); 
         }
-        public double calcAvAge(){
+        public double calcAvAge(){ //AvAge = Average Age
             double avAge = 0;
             if(drag1 != null){avAge += drag1.getAge();}
             if(drag2 != null){avAge += drag2.getAge();}
@@ -76,7 +77,7 @@ public class Zone2{
             
             return avBMI/getNumDragons();
         }
-        public double calcAvCR(){
+        public double calcAvCR(){ // AvCR = Average Cardiac Risk //
             double avCR = 0;
             if(drag1 != null){avCR += drag1.calcCR();}
             if(drag2 != null){avCR += drag2.calcCR();}
@@ -85,25 +86,28 @@ public class Zone2{
         }
         
         public void updateNumDragons(){
+            // Updates the variable "numDragons" //
             int newNumDragons = 0;
             if(drag1 != null){newNumDragons ++;}
             if(drag2 != null){newNumDragons ++;}
             numDragons = newNumDragons;
         }
         
-	public void heatingControl(int newTemp){
+	public void heatingControl(int newTemp){ // This method is not used yet //
+            // This method 'controls' the zone 2 temperature (Dragons need a temp between 35° & 40°) //
             temp = newTemp;
         }
-        public String searchByLetter(){
+        public String searchByVowel(){
+            // Uses searchByVowel() in Dragon class to check all dragons in the zone //
             String nameList = "";
-            nameList += drag1.searchByLetter();
-            nameList += drag2.searchByLetter();
+            nameList += drag1.searchByVowel();
+            nameList += drag2.searchByVowel();
             
             return nameList;
         }
         
         public String ZoneUI(){
-            
+            //Creates a screen with this class information //
             String ln0 = String.format("%s",                          "______________________________________________________________________________");
             String ln1 = String.format("%s",                          "\n\n##############################################################################\n");
             String ln2 = String.format("%s",                          "#                            Zone 2: Dragons                                 #\n");
@@ -118,6 +122,7 @@ public class Zone2{
             
             String screenText = ln0 + ln1 + ln2 + ln3 + ln4 + ln5 + ln6 + ln7 + ln8 + ln9 + ln10;
             
+            // Add dragons info to this screen //
             if(drag1 != null){screenText += drag1.DragonUI();}
             if(drag2 != null){screenText += drag2.DragonUI();}
             

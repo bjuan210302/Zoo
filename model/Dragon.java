@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 public class Dragon {
 
-    // Atributos //
+    // Atributes //
     public static final char FEMALE = 'F';
     public static final char MALE = 'M';
     public static final String BLOOD_TYPE_A = "A";
@@ -23,7 +23,7 @@ public class Dragon {
     private Date birthDate;
     DecimalFormat f;
 
-    // Metodos //
+    // Methods //
     public Dragon(String na, String bl, double wg, double hg, char sx, int bd, int bm, int by) {
         name = na;
         blood = bl;
@@ -130,25 +130,27 @@ public class Dragon {
         return cardiacRiskLevel;
     }
     
-    public String searchByLetter(){
+    public String searchByVowel(){
+        // To know if this animal name begins and ends with vowels //
             String nameList = "";
             String Name = getName();
             
-            Name = Name.trim(); Name = Name.toLowerCase();
-            int length = Name.length();
+            Name = Name.trim(); Name = Name.toLowerCase(); // Put all characters in lower case //
+            int length = Name.length(); // Calculates how much characters the name have //
             
-            char firstLetter = Name.charAt(0);
-            char LastLetter = Name.charAt(length - 1);
+            char firstLetter = Name.charAt(0); // Put the first character in a char to compare it with the vowels later //
+            char LastLetter = Name.charAt(length - 1); // Put the last character in a char to compare it with the vowels later //
             
             if(firstLetter == 'a' || firstLetter == 'e' || firstLetter == 'i' || firstLetter == 'o'|| firstLetter == 'u'){
                 if(LastLetter == 'a' || LastLetter == 'e' || LastLetter == 'i' || LastLetter == 'o'|| LastLetter == 'u'){
-                nameList = getName() + "\n";
+                nameList = getName() + "\n"; // this line only executes if first and last character are equals to a vowel //
                 }
             }
             return nameList;
         }
     
     public String DragonUI() {
+        //Creates a screen with this type of animal information //
         String ln1 = String.format("%63s", "|  |\n");
         String ln2 = String.format("%40s %s", "", "#######################################\n");
         String ln3 = String.format("%40s %s %-29.15s %s", "", "# Name:", getName(), "#\n");
