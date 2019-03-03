@@ -204,7 +204,6 @@ public class Zone1{
             if(envi3.deleteKang(kangName) == true){message = "\nKangaroo '" + kangName +"' successfully deleted";}
             return message;
         }
-        
         public String moveKang(String kangName, int toEnvi){
             Kangaroo copiedKang = null;
             String message = "\nMake sure you write the requested info correctly."
@@ -256,6 +255,14 @@ public class Zone1{
             return message;
         }
 	
+        public String searchByLetter(){
+            String nameList = "";
+            nameList += envi1.searchByLetter();
+            nameList += envi2.searchByLetter();
+            nameList += envi3.searchByLetter();
+            
+            return nameList;
+        }
 	
         public String ZoneUI(){
             

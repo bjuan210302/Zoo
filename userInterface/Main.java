@@ -68,11 +68,16 @@ public class Main{
         
         sAustralia.moveKang(kangName, toEnvi);
     }
+    public void searchByLetter(){
+        System.out.println("\nAnimals that their name begins and ends with vowels: \n");
+        System.out.println(sAustralia.searchByLetter());
+    }
     
     public void menu(){
 	System.out.println("\nWhat do you want to do?");
 	System.out.println("1) See all areas                     2) See zone 1                     3) See zone 2");
 	System.out.println("4) Add kangaroo                      5) Delete kangaroo                6) Move kangaroo");
+        System.out.println("7) Animals per vowels                8) Exit                           9) Coming soon...");
 	select = (lec.nextInt());
                 
 	switch(select){
@@ -94,7 +99,10 @@ public class Main{
                 case 6: moveKang();
 		break;
                 
-                case 7: System.out.println("GoodBye!");
+                case 7: searchByLetter();
+		break;
+                
+                case 8: System.out.println("GoodBye!");
 		break;
 			
 		default: System.out.println("Sorry but option '" + select + "' doesn't exist.");
@@ -112,6 +120,6 @@ public class Main{
         main.Main();
         
         //main.insertDate();
-        do{main.menu();} while(main.select != 7);
+        do{main.menu();} while(main.select != 8);
     }
 }

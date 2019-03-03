@@ -180,6 +180,23 @@ public class Kangaroo{
             }
             return daysTillVaccine;
         }
+        public String searchByLetter(){
+            String nameList = "";
+            String Name = getName();
+            
+            Name = Name.trim(); Name = Name.toLowerCase();
+            int length = Name.length();
+            
+            char firstLetter = Name.charAt(0);
+            char LastLetter = Name.charAt(length - 1);
+            
+            if(firstLetter == 'a' || firstLetter == 'e' || firstLetter == 'i' || firstLetter == 'o'|| firstLetter == 'u'){
+                if(LastLetter == 'a' || LastLetter == 'e' || LastLetter == 'i' || LastLetter == 'o'|| LastLetter == 'u'){
+                nameList = getName() + "\n";
+                }
+            }
+            return nameList;
+        }
         
         public String KangarooUI(){
         String ln1 = String.format("%40s %s", "", "#####################################\n");

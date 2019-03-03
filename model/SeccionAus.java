@@ -24,25 +24,25 @@ public class SeccionAus{
 			Environment envi2;
 			Environment envi3;
 			
-            Kangaroo kang1 = new Kangaroo("nameK1", "A", 58.8, 1.9, 1, 'M', 19, 7, 1994);
-            Kangaroo kang2 = new Kangaroo("nameK2", "B", 32.6, 1.3, 1, 'F', 5, 10, 1998);
-            Kangaroo kang3 = new Kangaroo("nameK3", "AB", 37.2, 1.6, 1, 'F', 22,2, 1996);
+            Kangaroo kang1 = new Kangaroo("ameK1", "A", 58.8, 1.9, 1, 'M', 19, 7, 1994);
+            Kangaroo kang2 = new Kangaroo("ameK2i", "B", 32.6, 1.3, 1, 'F', 5, 10, 1998);
+            Kangaroo kang3 = new Kangaroo("ameK3", "AB", 37.2, 1.6, 1, 'F', 22,2, 1996);
             envi1 = new Environment (1, kang1, null, kang3);
 			
-            Kangaroo kang4 = new Kangaroo("nameK4", "A", 24.2, 1.3, 2, 'F', 4, 4, 2000);
-            Kangaroo kang5 = new Kangaroo("nameK5", "O", 36.4, 2.4, 2, 'M', 18, 12, 1992);
-            Kangaroo kang6 = new Kangaroo("nameK6", "AB", 27.2, 1.7, 2, 'F', 29, 6, 1997);
+            Kangaroo kang4 = new Kangaroo("ameK4e", "A", 24.2, 1.3, 2, 'F', 4, 4, 2000);
+            Kangaroo kang5 = new Kangaroo("ameK5", "O", 36.4, 2.4, 2, 'M', 18, 12, 1992);
+            Kangaroo kang6 = new Kangaroo("ameK6u", "AB", 27.2, 1.7, 2, 'F', 29, 6, 1997);
             envi2 = new Environment (2, null, kang5, kang6);
 			
-            Kangaroo kang7 = new Kangaroo("a", "O", 22.2, 1.1, 3, 'M', 17, 5, 2003);
-            Kangaroo kang8 = new Kangaroo("nameK8", "B", 30.3, 1.8, 3, 'M', 6, 1, 1996);
-            Kangaroo kang9 = new Kangaroo("nameK9", "B", 26.2, 1.4, 3, 'F', 2, 6, 1999);
+            Kangaroo kang7 = new Kangaroo("aaa", "O", 22.2, 1.1, 3, 'F', 17, 5, 2003);
+            Kangaroo kang8 = new Kangaroo("ameK8o", "B", 30.3, 1.8, 3, 'M', 6, 1, 1996);
+            Kangaroo kang9 = new Kangaroo("ameK9e", "B", 26.2, 1.4, 3, 'F', 2, 6, 1999);
             envi3 = new Environment (3, kang7, kang8, null);
             
             zonak1 = new Zone1(envi1, envi2, envi3);
 			
-            Dragon drag1 = new Dragon("wtfffffffffff", "AB", 75.34, 2.75, 'F', 21, 5, 1992);
-            Dragon drag2 = new Dragon("bruhh", "B", 82.13, 3.42, 'M', 18, 11, 1988);
+            Dragon drag1 = new Dragon("awtfffffffu", "AB", 75.34, 2.75, 'F', 21, 5, 1992);
+            Dragon drag2 = new Dragon("uhho", "B", 82.13, 3.42, 'M', 18, 11, 1988);
             zonad1 = new Zone2(15.5, drag1, drag2);
             
             f = new DecimalFormat("#.00");
@@ -73,6 +73,13 @@ public class SeccionAus{
         }
         public void moveKang(String kangName, int toEnvi){
             System.out.println(zonak1.moveKang(kangName, toEnvi));
+        }
+        public String searchByLetter(){
+            String nameList = "";
+            nameList += zonak1.searchByLetter();
+            nameList += zonad1.searchByLetter();
+            
+            return nameList;
         }
 	
 	public double calcTotalAreaReq(){

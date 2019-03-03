@@ -94,6 +94,13 @@ public class Zone2{
 	public void heatingControl(int newTemp){
             temp = newTemp;
         }
+        public String searchByLetter(){
+            String nameList = "";
+            nameList += drag1.searchByLetter();
+            nameList += drag2.searchByLetter();
+            
+            return nameList;
+        }
         
         public String ZoneUI(){
             

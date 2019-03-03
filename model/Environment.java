@@ -149,6 +149,14 @@ public class Environment {
             
             return kangFound;
         }
+        public String searchByLetter(){
+            String nameList = "";
+            if(kangp1 != null){nameList += kangp1.searchByLetter();}
+            if(kangp2 != null){nameList += kangp2.searchByLetter();}
+            if(kangp3 != null){nameList += kangp3.searchByLetter();}
+            
+            return nameList;
+        }
         
         public String EnvironmentUI(){
             
