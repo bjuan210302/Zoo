@@ -164,9 +164,9 @@ public class Zone1{
                     if (message.equals("")){
                         if(envi1.getNumKangaroos() == Environment.MAX_KANGAROOS){message += "\nError, there's no space for another kangaroo in ENVIRONMENT 1";}
                         else if(sex == Kangaroo.MALE && envi1.existMale() == true){message += "\nError, there's already a male kangaroo in ENVIRONMENT 1";}
-                        else if(envi1.kangp1 == null){getEnvi1().setKangp1(newKang); message = "Kangaroo " + newKang.getName() + " added successfully"; }
-                        else if(envi1.kangp2 == null){getEnvi1().setKangp2(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
-                        else if(envi1.kangp3 == null){getEnvi1().setKangp3(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
+                        else if(envi1.kangp1 == null){getEnvi1().setKangp1(newKang); message = "\nKangaroo " + newKang.getName() + " added successfully"; }
+                        else if(envi1.kangp2 == null){getEnvi1().setKangp2(newKang); message = "\nKangaroo " + newKang.getName() + " added successfully";}
+                        else if(envi1.kangp3 == null){getEnvi1().setKangp3(newKang); message = "\nKangaroo " + newKang.getName() + " added successfully";}
                     }break;
                     
                     case 2:
@@ -175,9 +175,9 @@ public class Zone1{
                     if (message.equals("")){
                         if(envi2.getNumKangaroos() == Environment.MAX_KANGAROOS){message += "\nError, there's no space for another kangaroo in ENVIRONMENT 2";}
                         else if(sex == Kangaroo.MALE && envi2.existMale() == true){message += "\nError, there's already a male kangaroo in ENVIRONMENT 2";}
-                        else if(envi2.kangp1 == null){getEnvi2().setKangp1(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
-                        else if(envi2.kangp2 == null){getEnvi2().setKangp2(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
-                        else if(envi2.kangp3 == null){getEnvi2().setKangp3(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
+                        else if(envi2.kangp1 == null){getEnvi2().setKangp1(newKang); message = "\nKangaroo " + newKang.getName() + " added successfully";}
+                        else if(envi2.kangp2 == null){getEnvi2().setKangp2(newKang); message = "\nKangaroo " + newKang.getName() + " added successfully";}
+                        else if(envi2.kangp3 == null){getEnvi2().setKangp3(newKang); message = "\nKangaroo " + newKang.getName() + " added successfully";}
                     }break;
                     
                     case 3:
@@ -186,9 +186,9 @@ public class Zone1{
                     if (message.equals("")){
                         if(envi3.getNumKangaroos() == Environment.MAX_KANGAROOS){message += "\nError, there's no space for another kangaroo in ENVIRONMENT 3";}
                         else if(sex == Kangaroo.MALE && envi3.existMale() == true){message += "\nError, there's already a male kangaroo in ENVIRONMENT 3";}
-                        else if(envi3.kangp1 == null){getEnvi3().setKangp1(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
-                        else if(envi3.kangp2 == null){getEnvi3().setKangp2(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
-                        else if(envi3.kangp3 == null){getEnvi3().setKangp3(newKang); message = "Kangaroo " + newKang.getName() + " added successfully";}
+                        else if(envi3.kangp1 == null){getEnvi3().setKangp1(newKang); message = "\nKangaroo " + newKang.getName() + " added successfully";}
+                        else if(envi3.kangp2 == null){getEnvi3().setKangp2(newKang); message = "\nKangaroo " + newKang.getName() + " added successfully";}
+                        else if(envi3.kangp3 == null){getEnvi3().setKangp3(newKang); message = "\nKangaroo " + newKang.getName() + " added successfully";}
                     }break;
                     
                     default: message = "\nError, there's no 'ENVIRONMENT " + newKang.getInEnvi() + "'";
@@ -207,34 +207,51 @@ public class Zone1{
         
         public String moveKang(String kangName, int toEnvi){
             Kangaroo copiedKang = null;
-            String message = "";
+            String message = "\nMake sure you write the requested info correctly."
+                        + "\nRemember: Write the animal's name exactly as it is showed on the info bar. "
+                        + "\nRemember: There's only 3 environments.";
             
             if(envi1.searchKang(kangName) != null){copiedKang = envi1.searchKang(kangName);}
             else if(envi2.searchKang(kangName) != null){copiedKang = envi2.searchKang(kangName);}
             else if(envi3.searchKang(kangName) != null){copiedKang = envi3.searchKang(kangName);}
-            copiedKang.setInEnvi(toEnvi);
             
-            if(toEnvi <=3 && toEnvi >=1 && copiedKang != null){
-                if (copiedKang.getInEnvi() == 1 && envi1.getNumKangaroos() != 3){
+            if(copiedKang != null){
+            copiedKang.setInEnvi(toEnvi);
+            switch(copiedKang.getInEnvi()){
+                case 1:
+                    if(envi1.existMale() == true && copiedKang.getSex() == 'M'){
+                        message = "\nError, there's already a male kangaroo in ENVIRONMENT 1";
+                    }else if(envi1.getNumKangaroos() < 3){
                     deleteKang(kangName);
                     addKang(copiedKang.getName() + "", copiedKang.getBlood(), copiedKang.getWeight(), copiedKang.getHeight(), toEnvi, copiedKang.getSex(), copiedKang.getbdDay(), copiedKang.getbdMonth(), copiedKang.getbdYear());
-                }
-                
-                if (copiedKang.getInEnvi() == 2 && envi2.getNumKangaroos() != 3){
+                    message = "Successful process";
+                    }
+                    break;
+                    
+                case 2:
+                    if(envi2.existMale() == true && copiedKang.getSex() == 'M'){
+                        message = "\nError, there's already a male kangaroo in ENVIRONMENT 1";
+                    }else if(envi2.getNumKangaroos() < 3){
                     deleteKang(kangName);
                     addKang(copiedKang.getName() + "", copiedKang.getBlood(), copiedKang.getWeight(), copiedKang.getHeight(), toEnvi, copiedKang.getSex(), copiedKang.getbdDay(), copiedKang.getbdMonth(), copiedKang.getbdYear());
-                }
-                
-                if (copiedKang.getInEnvi() == 3 && envi3.getNumKangaroos() != 3){
+                    message = "Successful process";
+                    }
+                    break;
+                    
+                case 3:
+                    if(envi3.existMale() == true && copiedKang.getSex() == 'M'){
+                        message = "\nError, there's already a male kangaroo in ENVIRONMENT 1";
+                    }else if(envi3.getNumKangaroos() < 3){
                     deleteKang(kangName);
                     addKang(copiedKang.getName() + "", copiedKang.getBlood(), copiedKang.getWeight(), copiedKang.getHeight(), toEnvi, copiedKang.getSex(), copiedKang.getbdDay(), copiedKang.getbdMonth(), copiedKang.getbdYear());
-                }
-                
-            }else{
-                message = "Make sure you write the requested info correctly."
+                    message = "Successful process";
+                    }
+                    break;
+                    
+                default:message = "\nMake sure you write the requested info correctly."
                         + "\nRemember: Write the animal's name exactly as it is showed on the info bar. "
                         + "\nRemember: There's only 3 environments.";}
-            
+            }
             
             return message;
         }
